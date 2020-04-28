@@ -1,0 +1,70 @@
+spring:
+ main:    allow-bean-definition-overriding: true
+ thymeleaf:
+    cache: false
+ jpa:
+    open-in-view: true
+ application:
+    name: LBI
+ output:
+    ansi:
+      enabled: ALWAYS
+ http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+ servlet:
+    multipart:
+      enabled: true
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+ resources:
+    add-mappings: true
+ mvc:
+    favicon:
+      enabled: false
+    throw-exception-if-no-handler-found: true
+ mail:  
+      host: smtp.qq.com
+      port: 465
+      username: hohahe@qq.com
+      password: qkrnqwtapfvdbgff
+      default-encoding: UTF-8
+      validate: false
+#      validate: true
+ security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://stage.servicechain.newtouch.com/api/authorization/.well-known/jwks.json"
+  
+
+server:
+ port: 8080
+ servlet:    application-display-name: ttsb
+    context-path: /wallet/
+ tomcat:
+  uri-encoding: UTF-8
+  basedir: tomcat
+logging:
+  config: classpath:logback.xml
+
+#stage  
+blockchain:
+  url: http://59.80.30.150:60180
+  token-address: "0x6ba366BAcc33d9BFFD0DDBB173213781a243e8C9"  
+#认证服务器相关url
+authentication:
+  server:
+    url:
+      login: "http://stage.servicechain.newtouch.com/#/Login"
+      account: "http://stage.servicechain.newtouch.com/api/account/user/getAccountAddress"
+      
+#测试环境
+ttsb-datasource:
+  url: jdbc:mysql://101.231.128.148:3306/ttsbstage?useUnicode=true&characterEncoding=utf-8&useSSL=false
+  username: ttsb
+  password: TTSBttsb~!)(
+  driver: com.mysql.jdbc.Driver
+ 

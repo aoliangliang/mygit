@@ -1,0 +1,168 @@
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	th:remove="tag">
+<th:block layout:fragment="body-left-head">
+	<div class="left-nav">
+            <div class="container" id="left-head">
+                <div class="row clearfix">
+                    <div class="col-md-12 column">
+                        <div class="logo">
+                            <a th:href="@{${#httpServletRequest.getRequestURL() +'#'}}">
+                                <img src="" alt="">
+                            </a>
+                            <i class="fa fa-bars phone-icon" aria-hidden="true" onclick="phoneSwitchNav()"></i>
+                        </div>
+                        <a onclick="javascript:void(0);">
+                            <div class="pho-out">
+                                <img th:src="@{/images/logo/wallet-logo.png}" class="img-circle personal-pho" style="width: 100%;height: 100%;"/>
+                            </div>
+                        </a>
+                        <h4 class="personal-name" v-text="username">
+                            Heather Parker
+                        </h4>
+                        <p class="personal-position" v-text="address">
+                            Web Architect
+                        </p>
+                        <a>
+                            <button type="button" class="btn btn-default personal-price">
+                                <i class="fa fa-btc" aria-hidden="true"></i>
+                                <span v-text="balance">
+                                </span>
+                            </button>
+                        </a>
+                        <div class="row clearfix">
+                            <div class="col-md-4 column personal-list-three">
+                                <a th:href="@{/route/personal}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 column personal-list-three">
+                                <a th:href="@{${#httpServletRequest.getRequestURL() +'#'}}">
+                                    <i class="fa fa-comment" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4 column personal-list-three">
+                                <a th:href="@{${#httpServletRequest.getRequestURL() +'#'}}">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row clearfix option-block-list">
+                            <div class="col-md-6 column personal-list-two">
+                                <a th:href="@{/route/index}">
+                                    <div class="option-block">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        <p>
+                                           	 主页
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 column personal-list-two">
+                                <a th:href="@{/route/currency}">
+                                    <div class="option-block">
+                                        <i class="fa fa-btc" aria-hidden="true"></i>
+                                        <p>
+                                            	币种
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md-6 column personal-list-two">
+                                <a th:href="@{/route/asset}">
+                                    <div class="option-block">
+                                        <i class="fa fa-money" aria-hidden="true"></i>
+                                        <p>
+                                            	资产	
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="col-md-6 column personal-list-two">
+                                <a th:href="@{/route/personal}">
+                                    <div class="option-block">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <p>
+                                            	个人中心
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+<!--                             <div class="col-md-6 column personal-list-two"> -->
+<!--                                 <a th:href="@{/route/transfer}"> -->
+<!--                                     <div class="option-block"> -->
+<!--                                         <i class="fa fa-exchange" aria-hidden="true"></i> -->
+<!--                                         <p> -->
+<!--                                             	转账 -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="col-md-6 column personal-list-two"> -->
+<!--                                 <a th:href="@{/route/txrecord}"> -->
+<!--                                     <div class="option-block"> -->
+<!--                                         <i class="fa fa-users" aria-hidden="true"></i> -->
+<!--                                         <p> -->
+<!--                                             	交易记录 -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="col-md-6 column personal-list-two"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <div class="option-block"> -->
+<!--                                         <i class="fa fa-user-md" aria-hidden="true"></i> -->
+<!--                                         <p> -->
+<!--                                             Profile -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="col-md-6 column personal-list-two"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <div class="option-block"> -->
+<!--                                         <i class="fa fa-file-text-o" aria-hidden="true"></i> -->
+<!--                                         <p> -->
+<!--                                             Invoices -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                             <div class="col-md-6 column personal-list-two"> -->
+<!--                                 <a href="#"> -->
+<!--                                     <div class="option-block"> -->
+<!--                                         <i class="fa fa-cogs" aria-hidden="true"></i> -->
+<!--                                         <p> -->
+<!--                                             Widgets -->
+<!--                                         </p> -->
+<!--                                     </div> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+                        </div>
+<!--                         <div class="card-out"> -->
+<!--                             <div class="Welcome-card"> -->
+<!--                                 <h4 class="tittle"> -->
+<!--                                     Hello, Friend! -->
+<!--                                 </h4> -->
+<!--                                 <p class="content"> -->
+<!--                                     Why not start using Purpose Application UI Kit and create something amazing today? -->
+<!--                                 </p> -->
+<!--                                 <button type="button" class="btn btn-default btn-block">Get Started</button> -->
+<!--                             </div> -->
+<!--                         </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+	<script type="text/javascript" th:inline="javascript">
+	var username = [[${session.CURRENT_USER.account.username}]];
+	var name = [[${session.CURRENT_USER.account.name}]];
+	var address = [[${session.CURRENT_USER.account.address}]];
+	var avatar = [[${session.CURRENT_USER.account.avatar}]];
+	var pointBalance = '';
+	</script>
+	<script type="text/javascript" charset="utf-8" th:src="@{/js/profession/frame/left-head.js}"></script>
+</th:block>
+</html>

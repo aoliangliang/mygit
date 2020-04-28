@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<th:block layout:insert="~{html-head}">
+<th:block layout:fragment="inculde-content">
+</th:block>
+<th:block layout:fragment="script-content">
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+		});
+	</script>
+</th:block>
+</th:block>
+<body>
+    <div onselectstart="return false" class="coat">
+
+<!--         <div class="mask" onclick="closeMask()"></div> -->
+<!--         <div class="search-coat"> -->
+<!--             <div class="search"> -->
+<!--                 <div class="input-left"> -->
+<!--                     <i class="fa fa-search" aria-hidden="true"></i> -->
+<!--                 </div> -->
+<!--                 <input type="text" placeholder="Type and hit enter ..."> -->
+<!--             </div> -->
+<!--             <div class="search-list-coat"> -->
+<!--                 <span class="triangle"></span> -->
+<!--                 <div class="search-list-title">Search Suggestions</div> -->
+<!--                 <div class="search-list"> -->
+<!--                     <i class="fa fa-search" aria-hidden="true"></i> -->
+<!--                     <span>macbook pro</span>in Laptops</div> -->
+<!--                 <div class="search-list"> -->
+<!--                     <i class="fa fa-search" aria-hidden="true"></i> -->
+<!--                     <span>macbook pro</span> in Laptops</div> -->
+<!--                 <div class="search-list"> -->
+<!--                     <i class="fa fa-search" aria-hidden="true"></i> -->
+<!--                     <span>beats pro solo 3</span> in Headphones</div> -->
+<!--             </div> -->
+<!--         </div> -->
+		
+        <th:block layout:insert="~{body-left-head}"></th:block>
+        <!-- 右侧部分 -->
+		<th:block layout:insert="~{body-right-content}">
+			<th:block layout:fragment="body-content">
+				<th:block layout:insert="~{body-top-nav}"></th:block>
+				<!-- 右侧详情 -->
+            <div class="container right-details" id="currency">
+                <!-- 详情 -->
+                <div class="row clearfix">
+                    <div class="col-md-12 column detail-title">
+                        <h3>
+                           	我的资产
+                            <small>
+                                
+                            </small>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-12 column md-screen-12">
+                        <div class="card card-fluid hidden-auto">
+                            <div class="currency-list-coat">
+                            <div class="currency-card-body">
+                                <div class="currency-list-title">
+                                    <div class="currency-title-item">符号</div>
+                                    <div class="currency-title-item">总量</div>
+                                    <div class="currency-title-item">状态</div>
+                                    <div class="currency-title-item">名称</div>
+                                </div>
+                                <div class="currency-list-li" style="text-align: center;" v-if="currencyList.length == 0">
+                                	暂无资产
+                                </div>
+                                <div class="currency-list-li" v-if="currencyList.length > 0" v-for="item in currencyList">
+                                    <div class="currency-personal">
+                                        <div class="currency-img" v-text="item.symbol">TTB</div>
+<!--                                         <div class="currency-name">Purpose</div> -->
+                                    </div>
+                                    <div class="currency-num" v-text="item.total">$2500 USD</div>
+                                    <div class="currency-status" v-if="item.status == '0'">
+                                        <i class="fa fa-circle" aria-hidden="true" style="color: #ff0000;font-size: 2px;"></i>
+                                      	  禁用
+                                    </div>
+                                    <div class="currency-status" v-if="item.status == '1'">
+                                        <i class="fa fa-circle" aria-hidden="true" style="color: #009900;font-size: 2px;"></i>
+                                      	  启用
+                                    </div>
+                                    <div class="currency-peo"><div class="img" v-text="item.name">peo</div></div>
+<!--                                     <div class="currency-progress"> -->
+<!--                                         <div class="currency-progress-in" style="width:15%;background: #d4c570;"></div> -->
+<!--                                     </div> -->
+                                    <div class="currency-filter">
+                                        <i class="fa fa-ellipsis-h" aria-hidden="true">
+                                            <div class="filter-block tasks-filter3">
+<!--                                                      <a class="dropdown-item" href="javascript:void(0);" v-on:click="toTransfer(item.id)"> -->
+<!--                                                        		 转账 -->
+<!--                                                     </a> -->
+                                                    <a class="dropdown-item" href="javascript:void(0);" v-on:click="detail(item.id)">
+                                                        	详情
+                                                    </a>
+                                            </div>
+                                        </i>
+                                    </div>
+                                    <div class="currency-details-coat">
+                                    		<div class="currency-details">
+												<div class="details-account">12341241234</div>
+												<div class="details-radio">
+													默认账号
+												</div>
+											</div>
+											<div class="currency-details">
+												<div class="details-radio">
+													
+												</div>
+												<div class="details-account">12341241234</div>
+											</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 20px;" >
+								<ul id="pageLimit"></ul>
+							</div>
+                        	</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+<!--                 <div class="currency-chick-more"> -->
+<!--                         Load more... -->
+<!--                 </div> -->
+				
+                <!-- 详情 end -->
+            </div>
+			</th:block>
+			
+		</th:block>
+	</div>
+</body>
+<script th:src="@{/js/profession/asset/asset.js}"></script>
+<script>
+// $(".currency-list-li").click(function(){
+    
+// });
+$(".fa-ellipsis-h").click(function(){
+    if($(this).find(".tasks-filter3").css('display')=='none'){
+        $(this).find(".tasks-filter3").css('display','block');
+        $(this).find(".tasks-filter3").css('opacity','1');
+        var op=$(".tasks-filter3").not($(this).find(".tasks-filter3"))
+        op.css('display','none');
+        op.css('opacity','0');
+        return false;
+    }
+    else{
+        $(this).find(".tasks-filter3").css('display','none');
+        $(this).find(".tasks-filter3").css('opacity','0');
+        return false;
+    }
+});
+$("body").click(function(event){
+	let propWin=document.getElementsByClassName('tasks-filter3')
+	for (let i = 0; i < propWin.length; i++) {
+		if(propWin[i].style.display=='block'){
+			propWin[i].style.display='none';
+			propWin[i].style.opacity='0';
+		}
+	}
+});
+</script>
+</html>

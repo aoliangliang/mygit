@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<th:block layout:insert="~{html-head}">
+<th:block layout:fragment="inculde-content">
+</th:block>
+<th:block layout:fragment="script-content">
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+		});
+	</script>
+</th:block>
+</th:block>
+<body>
+    <div onselectstart="return false" class="coat">
+		
+        <th:block layout:insert="~{body-left-head}"></th:block>
+        <!-- 右侧部分 -->
+		<th:block layout:insert="~{body-right-content}">
+			<th:block layout:fragment="body-content">
+				<th:block layout:insert="~{body-top-nav}"></th:block>
+				<!-- 右侧详情 -->
+            <div class="container right-details" id="txrecord">
+                <!-- 详情 -->
+                <div class="row clearfix">
+                    <div class="col-md-12 column detail-title">
+                        <h3>
+                           	 交易详情
+                            <small>
+                                
+                            </small>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-12 column md-screen-12">
+                        <div class="card card-fluid hidden-auto">
+                            <div class="card-header">
+                            	<div class="col-md-6 column">
+			                        	
+			                    </div>
+                            	<div class="col-md-6 column back-right">
+			                        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+			                        	返回
+			                    </div>
+                            </div>
+                            <div class="">
+	                            <div class="container">
+	                            		<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															币种
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="currency.name+'('+currency.symbol+')'">
+															什么什么币
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+	                            		<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															转出用户
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="fromUser">
+															什么什么币
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															转出地址
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="fromAddress">
+															什么什么币
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															转入用户
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="toUser">
+															200000
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															转入地址
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="toAddress">
+															200000
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															金额
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="amount">
+															200000
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															交易时间
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="formatTime(txTime)">
+															200000
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															状态
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-if="status == '2'">
+														<i aria-hidden="true" class="fa fa-circle" style="color: #00CCCC; font-size: 2px;"></i>
+															初始
+														</p>
+														<p v-if="status == '0'">
+														<i aria-hidden="true" class="fa fa-circle" style="color: rgb(255, 0, 0); font-size: 2px;"></i>
+															失败
+														</p>
+														<p v-if="status == '1'">
+														<i aria-hidden="true" class="fa fa-circle" style="color: #009900; font-size: 2px;"></i>
+															成功
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row clearfix details-list">
+											<div class="col-md-12 column">
+												<div class="row clearfix">
+													<div class="col-md-4 column details-left">
+														<p>
+															交易哈希
+														</p>
+													</div>
+													<div class="col-md-8 column details-right">
+														<p v-text="hash">
+															200000
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+	                            </div>
+                        	</div>
+                    </div>
+                    
+                </div>
+				</div>
+                <!-- 详情 end -->
+            </div>
+			</th:block>
+			
+		</th:block>
+	</div>
+</body>
+
+<script th:inline="javascript">
+var detail = [[${detail}]];
+$(".fa-ellipsis-h").click(function(){
+    if($(this).find(".tasks-filter3").css('display')=='none'){
+        $(this).find(".tasks-filter3").css('display','block');
+        $(this).find(".tasks-filter3").css('opacity','1');
+        var op=$(".tasks-filter3").not($(this).find(".tasks-filter3"))
+        op.css('display','none');
+        op.css('opacity','0');
+        return false;
+    }
+    else{
+        $(this).find(".tasks-filter3").css('display','none');
+        $(this).find(".tasks-filter3").css('opacity','0');
+    }
+});
+$("body").click(function(event){
+	let propWin=document.getElementsByClassName('tasks-filter3')
+	for (let i = 0; i < propWin.length; i++) {
+		if(propWin[i].style.display=='block'){
+			propWin[i].style.display='none';
+			propWin[i].style.opacity='0';
+		}
+	}
+});
+</script>
+<script th:src="@{/js/profession/tx-record/detail.js}"></script>
+</html>

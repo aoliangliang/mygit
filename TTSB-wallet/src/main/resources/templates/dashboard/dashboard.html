@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<th:block layout:insert="~{html-head}">
+<th:block layout:fragment="inculde-content">
+<script type="text/javascript" charset="utf-8" th:src="@{/plugs/timeline/js/modernizr.custom.js}"></script>
+</th:block>
+<th:block layout:fragment="script-content">
+	<style>
+		.currency-list-li{
+			line-height: 20.1rem;
+			padding: 1.2rem 2rem;
+			text-align: left;
+			border-bottom: 1px solid #eff2f7;
+			border-bottom:none;
+			color: #8492a6;
+			font-size: 2.5rem;
+			letter-spacing: 2px;
+			text-shadow: 1px 6px 11px #ddd;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+		});
+	</script>
+</th:block>
+</th:block>
+<body>
+    <div onselectstart="return false" class="coat" >
+		
+        <th:block layout:insert="~{body-left-head}"></th:block>
+        <!-- 右侧部分 -->
+		<th:block layout:insert="~{body-right-content}">
+			<th:block layout:fragment="body-content">
+				<th:block layout:insert="~{body-top-nav}"></th:block>
+<!-- 				<th:block layout:insert="~{body-right-details}"></th:block> -->
+				<div class="container right-details" id="dashboard">
+            	<!-- 详情 -->
+                <div class="row clearfix">
+                    <div class="col-md-12 column detail-title">
+                        <h3 v-text="'Hi,'+name">
+                            Hi, Heather!
+                        </h3>
+                        <small></small>
+                    </div>
+                </div>
+                <div class="row clearfix">
+                    <div class="col-md-12 column md-screen-6">
+                        <div class="card card-fluid">
+<!--                             <div class="card-header"></div> -->
+                            <div class="currency-card-body">
+                            	<div class="currency-list-li" style="text-align: center;">
+                                	敬请期待...
+                                </div>
+                            </div>
+                            <div class="card-body"  style="display: none;">
+                            	<div id="main" style="width: 100%;height:400px;"></div>
+                            </div>
+                        </div>
+                    </div>
+<!--                     <div class="col-md-4 column md-screen-6"> -->
+<!--                         <div class="card card-fluid"> -->
+<!--                             <div class="card-body"> -->
+<!--                                 <p class="circle-title">Emails sent</p> -->
+<!--                                 <div class="circle"> -->
+
+<!--                                 </div> -->
+<!--                                 <div class="circle-lists"> -->
+<!--                                     <div class="col"> -->
+<!--                                         <span class="circle-list"> -->
+<!--                                             <i class="fa fa-circle text-success" aria-hidden="true"></i> -->
+<!--                                             30 not sent -->
+<!--                                         </span> -->
+<!--                                         <span class="circle-list"> -->
+<!--                                             <i class="fa fa-circle text-info" aria-hidden="true"></i> -->
+<!--                                             68 success -->
+<!--                                         </span> -->
+<!--                                     </div> -->
+<!--                                     <div class="col"> -->
+<!--                                         <span class="circle-list"> -->
+<!--                                             <i class="fa fa-circle text-warning" aria-hidden="true"></i> -->
+<!--                                             38 opened -->
+<!--                                         </span> -->
+<!--                                         <span class="circle-list"> -->
+<!--                                             <i class="fa fa-circle text-danger" aria-hidden="true"></i> -->
+<!--                                             SMTP error -->
+<!--                                         </span> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                                 <a href="#"> -->
+<!--                                     <button type="button" class="btn btn-default btn-block circle-btn">Open -->
+<!--                                         insights</button> -->
+<!--                                 </a> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+                </div>
+                <div class="row clearfix">
+                </div>
+
+                <!-- 详情 end -->
+            </div>
+			</th:block>
+			
+		</th:block>
+	</div>
+</body>
+<script th:src="@{/js/common.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+		var name = [[${session.CURRENT_USER.account.name}]];
+	</script>
+<script th:src="@{/js/profession/dashboard/dashboard.js}"></script>
+
+</html>
