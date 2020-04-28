@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newtouch.blockchain.dao.AddressRecordDao">
+  <resultMap id="BaseResultMap" type="com.newtouch.blockchain.entity.AddressRecord">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="FIRST_INSERT" jdbcType="TIMESTAMP" property="firstInsert" />
+    <result column="LAST_MODIFIED" jdbcType="TIMESTAMP" property="lastModified" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="UPDATE_USER" jdbcType="VARCHAR" property="updateUser" />
+    <result column="DELETED" jdbcType="BIT" property="deleted" />
+    <result column="DEL_REASON" jdbcType="VARCHAR" property="delReason" />
+  </resultMap>
+  <sql id="baseSql">
+  	ID, USER_ID, ADDRESS, FILE_NAME, 
+  	FIRST_INSERT, LAST_MODIFIED, CREATE_USER, UPDATE_USER, DELETED, DEL_REASON
+  </sql>
+  <delete id="deleteById" parameterType="java.lang.String">
+    delete from TBL_ADDRESS_RECORD
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.newtouch.blockchain.entity.AddressRecord">
+    insert into TBL_ADDRESS_RECORD (ID, USER_ID, ADDRESS, FILE_NAME, 
+  		FIRST_INSERT, LAST_MODIFIED, CREATE_USER, UPDATE_USER, DELETED, DEL_REASON)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+		#{firstInsert,jdbcType=TIMESTAMP}, #{lastModified,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+		#{updateUser,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, #{delReason,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateById" parameterType="com.newtouch.blockchain.entity.AddressRecord">
+    update TBL_ADDRESS_RECORD
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FIRST_INSERT = #{firstInsert,jdbcType=TIMESTAMP},
+      LAST_MODIFIED = #{lastModified,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      DELETED = #{deleted,jdbcType=BIT},
+      DEL_REASON = #{delReason,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="baseSql"/>
+    from TBL_ADDRESS_RECORD
+    where ID = #{id,jdbcType=VARCHAR} and DELETED='0'
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select <include refid="baseSql"/>
+    from TBL_ADDRESS_RECORD 
+    where DELETED='0' 
+    order by FIRST_INSERT desc
+  </select>
+  <select id ="findByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="baseSql"/>
+    from TBL_ADDRESS_RECORD 
+    where DELETED='0' 
+    and USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id ="findByAddress" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select <include refid="baseSql"/>
+    from TBL_ADDRESS_RECORD 
+    where DELETED='0' 
+    and ADDRESS = #{address,jdbcType=VARCHAR}
+  </select>
+  <select id ="findByUserIdOrAddress" resultMap="BaseResultMap" parameterType="com.newtouch.blockchain.entity.AddressRecord">
+    select <include refid="baseSql"/>
+    from TBL_ADDRESS_RECORD 
+    <where>
+      DELETED = '0' 
+    <if test="userId != null and userId !=''">
+      and USER_ID = #{userId,jdbcType=VARCHAR}
+    </if>
+    <if test="address != null and address !=''">
+      and ADDRESS = #{address,jdbcType=VARCHAR}
+    </if>
+    </where>
+   	order by FIRST_INSERT desc
+  </select>
+</mapper>
