@@ -29,7 +29,7 @@ public class WalletBcTxTask {
 	@Autowired
 	private WalletEthService walletEthService;
 	
-	@Scheduled(cron = "*/5 * * * * ?")
+//	@Scheduled(cron = "*/5 * * * * ?")
 	@SuppressWarnings("rawtypes")
 	public void getBcTxRecord() {
 		try {

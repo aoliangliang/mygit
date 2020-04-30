@@ -35,7 +35,7 @@ public class ContractService {
 	@Value("${blockchain.token-address}")
 	private String tokenAddress;
 	
-	@Autowired
+//	@Autowired
 	private Web3j web3j;
 
 //	private Admin buildAdmin() {

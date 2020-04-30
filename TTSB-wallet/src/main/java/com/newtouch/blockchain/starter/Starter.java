@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 启动类
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource(locations = { "classpath*:/beans/**/*.xml" })
 @ComponentScan(basePackages = { "cn.kklazy", "com.newtouch" })
 @SpringBootApplication
+//@EnableScheduling
 public class Starter extends SpringBootServletInitializer{
 	
 	

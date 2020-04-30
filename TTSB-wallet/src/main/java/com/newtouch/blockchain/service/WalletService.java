@@ -3,6 +3,9 @@ package com.newtouch.blockchain.service;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,17 +24,22 @@ import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.Int;
 import org.web3j.abi.datatypes.Type;
 import org.web3j.abi.datatypes.Uint;
+import org.web3j.crypto.Bip39Wallet;
+import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.RawTransaction;
 import org.web3j.crypto.TransactionEncoder;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 import org.web3j.protocol.core.methods.request.Transaction;
 import org.web3j.protocol.core.methods.response.EthCall;
 import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 import org.web3j.protocol.core.methods.response.EthSendTransaction;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.protocol.http.HttpService;
 import org.web3j.utils.Numeric;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,7 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class WalletService {
-	@Autowired
+//	@Autowired
 	private Web3j web3j;
 	
 //	private static final String URL = "http://59.80.34.143:46080";
@@ -312,20 +320,40 @@ public class WalletService {
         }
         return null;
     }
-	public static void main(String[] args) throws IOException {
-		String inputData = "0x80318be8000000000000000000000000e6f990c09f779ec1510d8143938b501b19e87fbf000000000000000000000000a5c481bd2f4019d6a4b3abf5be91a7d722b82ba1000000000000000000000000000000000000000000000000000000000000000a";
-		String method = inputData.substring(0, 10);
-		System.out.println(method);
-		String from = inputData.substring(10, 74);
-        System.out.println("from:"+hexToAddress(from));
-        
-        String to = inputData.substring(74, 138);
-        System.out.println("to:"+hexToAddress(to));
-        
-        System.out.println("test:"+hexToAddress("0x0000000000000000000000006830ed08d58e6fad5133594858e685cade8dd145"));
-        String value = inputData.substring(138);
-//        long bigInteger = Long.parseLong(value, 16);
-        System.out.println("value:"+hexToBigInteger(value));
+    
+	public static void main(String[] args) throws IOException, CipherException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException {
+//		String inputData = "0x80318be8000000000000000000000000e6f990c09f779ec1510d8143938b501b19e87fbf000000000000000000000000a5c481bd2f4019d6a4b3abf5be91a7d722b82ba1000000000000000000000000000000000000000000000000000000000000000a";
+//		String method = inputData.substring(0, 10);
+//		System.out.println(method);
+//		String from = inputData.substring(10, 74);
+//        System.out.println("from:"+hexToAddress(from));
+//        
+//        String to = inputData.substring(74, 138);
+//        System.out.println("to:"+hexToAddress(to));
+//        
+//        System.out.println("test:"+hexToAddress("0x0000000000000000000000006830ed08d58e6fad5133594858e685cade8dd145"));
+//        String value = inputData.substring(138);
+////        long bigInteger = Long.parseLong(value, 16);
+//        System.out.println("value:"+hexToBigInteger(value));
 //		System.out.println(new WalletService().transferToken("0x44488d642b7f7d8d23a7ad3978691e8f841811f2", "0x6830ed08d58e6fad5133594858e685cade8dd145", new BigInteger("10922")));
+//		Bip39Wallet wallet = WalletUtils.generateBip39Wallet("", new File("F://Newtouch/ttsb/wallet/test/"));
+//		System.out.println(wallet.getFilename());
+//		System.out.println("助记词:"+wallet.getMnemonic());
+		
+		Credentials credentials = WalletUtils.loadBip39Credentials("", "cereal tomato teach burst sketch gun umbrella mimic seven escape bench heavy");
+		System.out.println("address:"+credentials.getAddress());
+		System.out.println("publicKey:"+credentials.getEcKeyPair().getPublicKey());
+		System.out.println("privateKey:"+credentials.getEcKeyPair().getPrivateKey());
+		
+//		Credentials credentials = WalletUtils.loadBip39Credentials("123456", "myself priority melt tank rifle travel magnet pact drop dance insane glare");
+//		System.out.println("address:"+credentials.getAddress());
+//		System.out.println("publicKey:"+credentials.getEcKeyPair().getPublicKey());
+//		System.out.println("privateKey:"+credentials.getEcKeyPair().getPrivateKey());
+//		Admin admin = Admin.build(new HttpService("http://59.80.34.143:48080"));
+//		String name = WalletUtils.generateLightNewWalletFile("123456", new File("F://Newtouch/ttsb/wallet/test/"));
+//		System.out.println("name:"+name);
+//		System.out.println(admin.personalNewAccount("123456").send().getAccountId());
+//		Web3j web3j = Web3j.build(new HttpService("http://54.249.210.159:8080"));
+//		System.out.println(web3j.ethGetBalance("0xca3ddbfb2e9bda13dbc173d11b7a94613f0de59a", DefaultBlockParameter.valueOf("latest")).send().getBalance());
 	}
 }

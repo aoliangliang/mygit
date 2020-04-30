@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WalletEthService {
 	
-	@Autowired
+//	@Autowired
 	private Web3j web3j;
 	/**
 	 * 获取区块数

@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.web3j.protocol.Web3j;
-import org.web3j.protocol.Web3jService;
 import org.web3j.protocol.admin.Admin;
-import org.web3j.protocol.http.HttpService;
 
+import com.newtouch.blockchain.base.BaseWeb3;
 import com.newtouch.blockchain.entity.WalletNode;
 import com.newtouch.blockchain.service.WalletNodeService;
 
@@ -17,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class EthereumStartupRunner implements CommandLineRunner{
+public class EthereumStartupRunner extends BaseWeb3 implements CommandLineRunner{
 	@Autowired
 	private WalletNodeService walletNodeService;
 	@Autowired
@@ -47,9 +46,4 @@ public class EthereumStartupRunner implements CommandLineRunner{
 		}
 		log.info("实例化web3j end");
 	}
-	
-	private Web3jService buildService(String url) {
-		return new HttpService(url);
-	}
-
 }
