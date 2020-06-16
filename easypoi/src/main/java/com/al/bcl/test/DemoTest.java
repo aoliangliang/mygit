@@ -4,5 +4,6 @@ public class DemoTest {
 	public void test() {
 		System.out.println("aaa");
 		System.out.println("master");
+		System.out.println("dev");
 	}
 }
